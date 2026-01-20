@@ -55,13 +55,6 @@ void BlockMovement () {
 
         TFlywheel.move_velocity(-600);
         BFlywheel.move_velocity(-600);
-    } 
-
-    //Middle goal outake.
-    else if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-
-        TFlywheel.move_velocity(300);
-        BFlywheel.move_velocity(300);    
 
     } else {
         TFlywheel.brake();
@@ -70,20 +63,20 @@ void BlockMovement () {
 
 }
 
-void PneuMovement1 () {
+void PneuMovement () {
 
         //Descore
     if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
 
         if (PneuDescore == false) {
             
-            PneumaticDescore.retract();
+            PneumaticDescore.extend();
             PneuDescore = true;
             pros::delay(500);
 
         } else {
 
-            PneumaticDescore.extend();
+            PneumaticDescore.retract();
             PneuDescore = false;
             pros::delay(500);
 
@@ -95,14 +88,14 @@ void PneuMovement1 () {
 
         if (PneuMatchLoad== false) {
 
-            PneuLoad.extend();
+            PneumaticLoad.extend();
             PneuMatchLoad = true;
             pros::delay(500);
 
         } else {
 
             //PneuLoad.retract();
-            PneuLoad.retract();
+            PneumaticLoad.retract();
             PneuMatchLoad = false;
             pros::delay(500);
 

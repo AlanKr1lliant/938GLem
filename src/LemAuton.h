@@ -24,4 +24,10 @@ void _PathLemR ();
 void _PathLemA ();
 void _PathLemS ();
 
+//Declare auton path functions.
+void _Intake ();
+void _Matchload ();
+void _OuttakeT ();
+void _OuttakeM ();
+void _OuttakeB (); 
 #endif //_PROS_AUTON_H_ 

@@ -51,8 +51,8 @@ pros::Rotation VerticalSensor(1);
 lemlib::TrackingWheel VerticalTracking(&VerticalSensor, 2.75, 6);
 
 lemlib::OdomSensors OSensors (nullptr,
-							nullptr,
-							  //&VerticalTracking,
+							//nullptr,
+							  &VerticalTracking,
 	                          nullptr,
 							  nullptr,
 							  &IMU);
@@ -78,7 +78,7 @@ lemlib::ControllerSettings LController (8, // proportional gain (kP)
 );
 lemlib::ControllerSettings AController (2, // proportional gain (kP)
 										0, // integral gain (kI)
-										10, // derivative gain (kD)
+										20, // derivative gain (kD)
 										3, // anti windup
 										1, // small error range, in degrees
 										100, // small error range timeout, in milliseconds
@@ -86,11 +86,20 @@ lemlib::ControllerSettings AController (2, // proportional gain (kP)
 										500, // large error range timeout, in milliseconds
 										0 // maximum acceleration (slew)
 );
+
+//Define pneumatics.
+pros::adi::Pneumatics PneumaticDescore('b', false);
+pros::adi::Pneumatics PneuLoad('d', true);
+
+lemlib::Chassis chassis (drivetrain,
+						LController,
+						AController,
+						OSensors);
 */
 
 
 
-// Competition robot definition starts hereZ x
+// Competition robot definition starts here.
 
 //Define 6 motor drivetrain with left and right motor groups. 
 pros::Motor LFwheel (-13, 
@@ -113,7 +122,7 @@ pros::MotorGroup RMotorGroup ({18, 19, 20},
 
 lemlib::Drivetrain drivetrain (&LMotorGroup, 
 							  &RMotorGroup, 
-							  10.75,
+							  11,
 							  3,
 							  360,
 							  2);
@@ -124,7 +133,7 @@ pros::Motor BFlywheel (9);
 
 //Define pneumatics.
 pros::adi::Pneumatics PneumaticDescore('b', false);
-pros::adi::Pneumatics PneuLoad('d', true);
+pros::adi::Pneumatics PneumaticLoad('d', false);
 
 //Defines sensors and odom
 pros::Imu IMU(10);
@@ -147,7 +156,7 @@ lemlib::ExpoDriveCurve SteerCurve (3,
                                   1.019);
 
 //Defines PID.
-lemlib::ControllerSettings LController (10, // proportional gain (kP)
+lemlib::ControllerSettings LController (8, // proportional gain (kP)
                                         0, // integral gain (kI)
                                         5, // derivative gain213 (kD)
                                         3, // anti windup
@@ -159,7 +168,7 @@ lemlib::ControllerSettings LController (10, // proportional gain (kP)
 );
 lemlib::ControllerSettings AController (5, // proportional gain (kP)
 										0, // integral gain (kI)
-										3, // derivative gain (kD)
+										60, // derivative gain (kD)
 										3, // anti windup
 										1, // small error range, in degrees
 										100, // small error range timeout, in milliseconds
@@ -172,3 +181,4 @@ lemlib::Chassis chassis (drivetrain,
 						LController,
 						AController,
 						OSensors);
+//
