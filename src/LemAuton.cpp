@@ -9,6 +9,7 @@
 #include "LemAuton.h"
 
 //Define auton utility variables.
+bool intake = false;
 
 //Define auton functions.
 void _LateralMovement (float XCoord, float YCoord, int Time, bool Forward=true) {
@@ -100,8 +101,10 @@ void _PathLemR () {
     PneumaticLoad.extend();
     _LateralMovement (-48, -48, 1500, false);
     _AngularMovement(270, 500, false);
+    intake = true;
     _LateralMovement(-84, -48, 750, true);
-    _Intake(2000); 
+    pros::delay(2500);
+    intake = false;
     PneumaticLoad.retract();
     _LateralMovement(-24, -48, 1500, false);
     _OuttakeT(2000);
@@ -109,9 +112,11 @@ void _PathLemR () {
     _LateralMovement(-24, -48, 500, false);
     _LateralMovement(-48, -48, 750, true);
     _AngularMovement(45, 750, true);
-    _LateralMovement(-24, -24, 1000, true);
-    _Intake(1500);
+    _LateralMovement(-27, -27, 1000, true);
+    intake = true;
     _LateralMovement(-12, -12, 500, true);
+    pros::delay(1000);
+    intake = false;
     _OuttakeL(1500);
 
 }

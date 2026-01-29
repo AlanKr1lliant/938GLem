@@ -91,6 +91,13 @@ void competition_initialize() {}
  */
 
 void autonomous() {
+	pros::Task IntakeTask([&] {
+		while(intake == true) {
+			TFlywheel.brake();
+			BFlywheel.move_velocity(600);
+			pros::delay(15);
+		}
+	});
 
 	_PathLemR();
 
