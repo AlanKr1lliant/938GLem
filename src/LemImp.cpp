@@ -132,8 +132,9 @@ pros::Motor TFlywheel (-5);
 pros::Motor BFlywheel (9);
 
 //Define pneumatics.
-pros::adi::Pneumatics PneumaticDescore('b', false);
-pros::adi::Pneumatics PneumaticLoad('d', false);
+pros::adi::Pneumatics PneumaticDescore('b', true);
+pros::adi::Pneumatics PneumaticLoad('d', true);
+pros::adi::Pneumatics PneumaticMiddle('f', false); 
 
 //Defines sensors and odom
 pros::Imu IMU(10);
@@ -156,9 +157,9 @@ lemlib::ExpoDriveCurve SteerCurve (3,
                                   1.019);
 
 //Defines PID.
-lemlib::ControllerSettings LController (8, // proportional gain (kP)
+lemlib::ControllerSettings LController (6, // proportional gain (kP)
                                         0, // integral gain (kI)
-                                        5, // derivative gain213 (kD)
+                                        1, // derivative gain213 (kD)
                                         3, // anti windup
                                     	1, // small error range, in inches
                                         100, // small error range timeout, in milliseconds
@@ -166,9 +167,9 @@ lemlib::ControllerSettings LController (8, // proportional gain (kP)
 										500, // large error range timeout, in milliseconds
 										20 // maximum acceleration (slew)
 );
-lemlib::ControllerSettings AController (5, // proportional gain (kP)
+lemlib::ControllerSettings AController (8, // proportional gain (kP)
 										0, // integral gain (kI)
-										60, // derivative gain (kD)
+										80, // derivative gain (kD)
 										3, // anti windup
 										1, // small error range, in degrees
 										100, // small error range timeout, in milliseconds

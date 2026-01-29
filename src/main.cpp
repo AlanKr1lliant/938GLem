@@ -92,7 +92,7 @@ void competition_initialize() {}
 
 void autonomous() {
 
-	_PathLemT();
+	_PathLemR();
 
 }
 

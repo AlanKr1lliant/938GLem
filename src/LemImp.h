@@ -36,6 +36,7 @@ extern pros::Motor BFlywheel;
 //Declare pneumatics.
 extern pros::adi::Pneumatics PneumaticDescore;
 extern pros::adi::Pneumatics PneumaticLoad;
+extern pros::adi::Pneumatics PneumaticMiddle;
 
 //Declare sensors and odom.
 extern pros::Imu IMU;

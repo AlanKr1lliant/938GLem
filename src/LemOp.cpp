@@ -15,7 +15,7 @@ double PowerFactor = 1;
 double TurnFactor = 1;
 bool PneuDescore = false;
 bool PneuMatchLoad = false;
-
+bool PneuMiddle = false;
 //Define drivetrain function.
 void DriveMovement() {
 
@@ -66,40 +66,54 @@ void BlockMovement () {
 void PneuMovement () {
 
         //Descore
-    if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+    if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
 
         if (PneuDescore == false) {
             
-            PneumaticDescore.extend();
+            PneumaticDescore.retract();
             PneuDescore = true;
-            pros::delay(500);
+            pros::delay(250);
 
         } else {
 
-            PneumaticDescore.retract();
+            PneumaticDescore.extend();
             PneuDescore = false;
-            pros::delay(500);
+            pros::delay(250);
 
         }
 
     }
     
-   if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+   if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
 
         if (PneuMatchLoad== false) {
 
-            PneumaticLoad.extend();
+            PneumaticLoad.retract();
             PneuMatchLoad = true;
-            pros::delay(500);
+            pros::delay(250);
 
         } else {
 
             //PneuLoad.retract();
-            PneumaticLoad.retract();
+            PneumaticLoad.extend();
             PneuMatchLoad = false;
-            pros::delay(500);
+            pros::delay(250);
 
         }
+
+    }
+
+    if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+
+        if (PneuMiddle == false)
+            PneumaticMiddle.extend();
+            PneuMiddle = true;
+            pros::delay(250);
+
+        } else {
+            PneumaticMiddle.retract();
+            PneuMiddle = false;
+            pros::delay(250);
 
     }
 }
