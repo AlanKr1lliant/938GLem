@@ -134,7 +134,6 @@ pros::Motor BFlywheel (9);
 //Define pneumatics.
 pros::adi::Pneumatics PneumaticDescore('b', true);
 pros::adi::Pneumatics PneumaticLoad('d', true);
-pros::adi::Pneumatics PneumaticMiddle('f', false); 
 
 //Defines sensors and odom
 pros::Imu IMU(10);

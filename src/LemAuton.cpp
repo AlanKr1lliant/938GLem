@@ -77,47 +77,52 @@ void _PathLemL () {
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
     chassis.setPose(-48, 0, 0, false);
 
-        _LateralMovement (-48, 48, 1500, true);
-        _AngularMovement (270, 500, false);
-        _LateralMovement (-24, 48, 1000, false);
-        _OuttakeT (1500);
-        _LateralMovement (-30, 48, 500, true);
-        _LateralMovement (-24, 48, 500, false);
-        _LateralMovement (-48, 48, 1000, true);
-        _AngularMovement (135, 1000, false);
-        _LateralMovement (-24, 24, 1000, true);
-        _Intake (2000);
-        _AngularMovement(315, 500, true);
-        _LateralMovement(-12, 12, 500, false);
-        _OuttakeT(3000);
+     PneumaticLoad.extend();
+    _LateralMovement (-48, 48, 1000, true);
+    _AngularMovement(270, 500, false);
+    BFlywheel.move_velocity(600);
+    _LateralMovement(-72, 48, 1000, true);
+    pros::delay(3000);
+    BFlywheel.brake();
+    _LateralMovement(-24, 48, 1000, false);
+    PneumaticLoad.retract();
+    _OuttakeT(2000);
+    _LateralMovement(-48, 48, 750, true);
+    _AngularMovement(135, 1000, true);
+    BFlywheel.move_velocity(600);
+    _LateralMovement(24, 24, 1000, true);
+    _AngularMovement(270, 1000, true);
+    BFlywheel.brake();
+    _LateralMovement(12, 12, 500, true);
+    _OuttakeT(3000);
+
+
+
 
 }
 
 void _PathLemR () {
 
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-    chassis.setPose(-48, 0, 0, false);
+    chassis.setPose(-48, 0, 0, false);\
 
     PneumaticLoad.extend();
-    _LateralMovement (-48, -48, 1500, false);
+    _LateralMovement (-48, -48, 1000, false);
     _AngularMovement(270, 500, false);
-    intake = true;
-    _LateralMovement(-84, -48, 750, true);
-    pros::delay(2500);
-    intake = false;
+    BFlywheel.move_velocity(600);
+    _LateralMovement(-72, -48, 1000, true);
+    pros::delay(3000);
+    BFlywheel.brake();
+    _LateralMovement(-24, -48, 1000, false);
     PneumaticLoad.retract();
-    _LateralMovement(-24, -48, 1500, false);
     _OuttakeT(2000);
-    _LateralMovement(-36, -48, 500, true);
-    _LateralMovement(-24, -48, 500, false);
-    _LateralMovement(-48, -48, 750, true);
+    _LateralMovement(-48, -48, 1000, true);
     _AngularMovement(45, 750, true);
-    _LateralMovement(-27, -27, 1000, true);
-    intake = true;
+    BFlywheel.move_velocity(600);
+    _LateralMovement(-24, -24, 1000, true);
+    BFlywheel.brake();
     _LateralMovement(-12, -12, 500, true);
-    pros::delay(1000);
-    intake = false;
-    _OuttakeL(1500);
+    _OuttakeL(3000);
 
 }
 
@@ -132,9 +137,37 @@ void _PathLemN () {
 void _PathLemS () {
 
     chassis.setBrakeMode (pros::E_MOTOR_BRAKE_BRAKE);
-    chassis.setPose (0, 0, 0, false);
+    chassis.setPose (-48, 0, 0, false);
     chassis.cancelAllMotions();
-    _LateralMovement (0, -12, 5000, false);
-    _LateralMovement (0, 40, 7000, true);
+
+    PneumaticLoad.extend();
+    _LateralMovement (-48, 48, 1500, true);
+    _AngularMovement (270, 750, false);
+    BFlywheel.move_velocity(600);
+    _LateralMovement (-72, 48, 1000, true);
+    pros::delay(3000);
+    BFlywheel.brake();
+    _LateralMovement (-24, 48, 1500, false);
+    PneumaticLoad.retract();
+    _OuttakeT(3000);
+    _LateralMovement (-48, -48, 1000, true);
+    _AngularMovement (0, 750, true);
+    PneumaticLoad.extend();
+    _LateralMovement (-48, -48, 3000, false);
+    _AngularMovement (270, 750, false);
+    BFlywheel.move_velocity(600);
+    _LateralMovement (-72, -48, 1000, true);
+    pros::delay(3000);
+    BFlywheel.brake();
+    _LateralMovement(-24, -48, 1500, false);
+    PneumaticLoad.retract();
+    _OuttakeT(3000);
+    _LateralMovement (-48, -48, 1000, true);
+    _AngularMovement(0, 750, true);
+    _LateralMovement (-48, -24, 1000, true);
+    _AngularMovement (270, 750, false);
+    _LateralMovement (-60, -24, 1000, true);
+    _AngularMovement (0, 750, true);
+    _LateralMovement(0, 0, 3000, true);
 
 }

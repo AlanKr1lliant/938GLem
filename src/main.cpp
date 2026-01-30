@@ -19,7 +19,7 @@
 
 void initialize() {
 	pros::lcd::initialize();
-	
+	pros::lcd::print(7, "ARM, AutonS, 1/29");
 	chassis.calibrate();
 
 	pros::lcd::print(0, "Robot 938G initialized");
@@ -91,15 +91,8 @@ void competition_initialize() {}
  */
 
 void autonomous() {
-	pros::Task IntakeTask([&] {
-		while(intake == true) {
-			TFlywheel.brake();
-			BFlywheel.move_velocity(600);
-			pros::delay(15);
-		}
-	});
 
-	_PathLemR();
+	_PathLemS();
 
 }
 

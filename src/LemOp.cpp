@@ -15,7 +15,6 @@ double PowerFactor = 1;
 double TurnFactor = 1;
 bool PneuDescore = false;
 bool PneuMatchLoad = false;
-bool PneuMiddle = false;
 //Define drivetrain function.
 void DriveMovement() {
 
@@ -66,7 +65,7 @@ void BlockMovement () {
 void PneuMovement () {
 
         //Descore
-    if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+    if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
 
         if (PneuDescore == false) {
             
@@ -84,7 +83,7 @@ void PneuMovement () {
 
     }
     
-   if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+   if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
 
         if (PneuMatchLoad== false) {
 
@@ -103,17 +102,4 @@ void PneuMovement () {
 
     }
 
-    if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-
-        if (PneuMiddle == false)
-            PneumaticMiddle.extend();
-            PneuMiddle = true;
-            pros::delay(250);
-
-        } else {
-            PneumaticMiddle.retract();
-            PneuMiddle = false;
-            pros::delay(250);
-
-    }
 }
