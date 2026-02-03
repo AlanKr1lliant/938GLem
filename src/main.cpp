@@ -18,12 +18,12 @@
  */
 
 void initialize() {
-	pros::lcd::initialize();
-	pros::lcd::print(7, "ARM, AutonS, 1/29");
+	//pros::lcd::initialize();
+	//pros::lcd::print(7, "ARM, AutonR, 1/31");
 	chassis.calibrate();
 
-	pros::lcd::print(0, "Robot 938G initialized");
-
+	//pros::lcd::print(0, "Robot 938G initialized");
+	/*
     pros::Task screenTask([&]() {
 
 		lemlib::TrackingWheel leftMotor(drivetrain.leftMotors, drivetrain.wheelDiameter,
@@ -57,7 +57,7 @@ void initialize() {
             pros::delay(100);
         }
     });
-
+	*/
 }
 
 /**
@@ -92,7 +92,7 @@ void competition_initialize() {}
 
 void autonomous() {
 
-	_PathLemS();
+	_PathLemR();
 
 }
 
