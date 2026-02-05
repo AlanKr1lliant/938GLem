@@ -1,10 +1,10 @@
 /**
  * 2026 Pushback Tournament
  * Team 938G Coder ARM()
- * Pros main.cpp
+ * Lem main.cpp
  */
 
-//We include main.h and ProsImp, Op, and Auton.
+//#We include main.h and LemImp, Op, and Auton.
 #include "lemlib/api.hpp"
 #include "main.h"
 #include "LemImp.h"
@@ -18,12 +18,18 @@
  */
 
 void initialize() {
-	//pros::lcd::initialize();
-	//pros::lcd::print(7, "ARM, AutonR, 1/31");
+
+	/*# This commented code in initialize tells us the code program and the lemlib pose
+	the robot thinks its at. Only turn on for testing */
+
+	pros::lcd::initialize();
+	pros::lcd::print(7, "ARM, AutonR, 2/4");
+
+	//# Calibrate the chassis.
 	chassis.calibrate();
 
 	//pros::lcd::print(0, "Robot 938G initialized");
-	/*
+	
     pros::Task screenTask([&]() {
 
 		lemlib::TrackingWheel leftMotor(drivetrain.leftMotors, drivetrain.wheelDiameter,
@@ -57,7 +63,7 @@ void initialize() {
             pros::delay(100);
         }
     });
-	*/
+	
 }
 
 /**
@@ -92,8 +98,9 @@ void competition_initialize() {}
 
 void autonomous() {
 
+	//# State the path.
 	_PathLemR();
-
+	
 }
 
 /**
@@ -101,7 +108,8 @@ void autonomous() {
  * with the default priority and stack size whenever the robot is enabled via
  * the Field Management System or the VEX Competition Switch in the operator
  * control mode.
- * If no competition control is connected, this function will run immediately
+ * If no competition control is connected,
+ *  this function will run immediately
  * following initialize().
  * If the robot is disabled or communications is lost, the
  * operator control task will be stopped. Re-enabling the robot will restart the
@@ -114,10 +122,10 @@ void opcontrol() {
 	pros::Task BlockTask ([&] {
 		while (true) {
 
-			//Opcontrol functions called.
+			//#Block movement functions called.
 			BlockMovement();		
 
-			//2 millisecond rest.
+			//#15 millisecond rest.
 			pros::delay(15);
 		}
 	});
@@ -128,7 +136,10 @@ void opcontrol() {
 
 			while (true) {
 
+				//# Pneumatic functions called.
 				PneuMovement();
+
+				//# 15 millisecond rest.
 				pros::delay(15);
 			
 			}
@@ -139,10 +150,10 @@ void opcontrol() {
 
 	while (true) {
 
-		//Opcontrol functions called.
+		//# Opcontrol functions called.
 		DriveMovement();		
 
-		//2 millisecond rest.
+		//#15 millisecond rest.
 		pros::delay(15);
 	}
 	

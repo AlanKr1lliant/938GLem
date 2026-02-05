@@ -137,8 +137,8 @@ pros::adi::Pneumatics PneumaticLoad('d', false);
 
 //Defines sensors and odom
 pros::Imu IMU(10);
-//pros::Rotation VerticalSensor(1);
-//lemlib::TrackingWheel VerticalTracking(&VerticalSensor, 2.75, 6);
+pros::Rotation VerticalSensor(1);
+lemlib::TrackingWheel VerticalTracking(&VerticalSensor, 2.75, 6);
 
 lemlib::OdomSensors OSensors (nullptr,
 							  nullptr,
@@ -158,7 +158,7 @@ lemlib::ExpoDriveCurve SteerCurve (3,
 //Defines PID.
 lemlib::ControllerSettings LController (6, // proportional gain (kP)
                                         0, // integral gain (kI)
-                                        1, // derivative gain213 (kD)
+                                        3, // derivative gain213 (kD)
                                         3, // anti windup
                                     	1, // small error range, in inches
                                         100, // small error range timeout, in milliseconds

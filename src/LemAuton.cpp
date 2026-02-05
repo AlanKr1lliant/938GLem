@@ -8,7 +8,7 @@
 #include "LemImp.h"
 #include "LemAuton.h"
 
-//Define auton utility variables.
+//#Define auton utility variables.
 
 //Define auton functions.
 void _LateralMovement (float XCoord, float YCoord, int Time, bool Forward=true) {
@@ -30,8 +30,8 @@ void _AngularMovement (float Angle, int Time, bool Direction) {
 
 void _OuttakeT (int Time) {
 
-    TFlywheel.move_velocity(600);
-    BFlywheel.move_velocity(600);
+    TFlywheel.move(127);
+    BFlywheel.move(127);
     pros::delay(Time);
     TFlywheel.brake();
     BFlywheel.brake();
@@ -40,8 +40,8 @@ void _OuttakeT (int Time) {
 
 void _OuttakeL (int Time) {
 
-    TFlywheel.move_velocity(-600);
-    BFlywheel.move_velocity(-600);
+    TFlywheel.move(-127);
+    BFlywheel.move(-127);
     pros::delay(Time);
     TFlywheel.brake();
     BFlywheel.brake();
@@ -65,48 +65,61 @@ void _PathLemT () {
 void _PathLemL () {
 
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-    chassis.setPose(-48, 0, 0, false);
+    chassis.setPose(-48, 16, 90, false);
+    _AngularMovement(180, 750, true);
+    _LateralMovement (-48, 24, 1000, true);
+    _AngularMovement(90, 750, false);
+    BFlywheel.move(127);
+    _LateralMovement (-24, 24, 1000, true);
+    BFlywheel.brake();
+    _AngularMovement (135, 1000, true);
 
-    _LateralMovement (-48, 48, 2000, true);
-    PneumaticLoad.extend();
-    _AngularMovement(270, 500, false);
-    BFlywheel.move_velocity(600);
-    _LateralMovement(-72, 48, 1000, true);
-    pros::delay(1500);
+    //_AngularMovement (315, 1500, true);
+    //_AngularMovement (-12, 12, false);
+    //_OuttakeT (750);
+    //_AngularMovement (45, 1500, true);
+
+    _LateralMovement (-48, 48, 1750, false);
+    _AngularMovement( 270, 1000, false);
+    _LateralMovement(-24, 48, 1000, false);
+    _OuttakeT (2000);
+    PneumaticLoad.set_value(true);
+    BFlywheel.move(127);
+    _LateralMovement (-72, 48, 1500, true);
+    pros::delay(1000);
     BFlywheel.brake();
-    _LateralMovement(-24, 48, 1500, false);
-    PneumaticLoad.retract();
-    _OuttakeT(1500);
-    _LateralMovement(-48, 48, 750, true);
-    _AngularMovement(135, 1250, true);
-    BFlywheel.move_velocity(600);
-    _LateralMovement(12, 12, 1000, true);
-    _AngularMovement(270, 1000, true);
-    BFlywheel.brake();
+    _LateralMovement (-24, 48, 1500, false);
+    _OuttakeT(2000);
+
 
 }
 
 void _PathLemR () {
 
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-    chassis.setPose(-48, -10, 0, false);
+    chassis.setPose(-48, -16, 90, false);
+    _AngularMovement(180, 750, true);
+    _LateralMovement (-48, -24, 1000, true);
+    _AngularMovement(90, 750, false);
+    BFlywheel.move(127);
+    _LateralMovement (-24, -24, 1000, true);
+    BFlywheel.brake();
+    _AngularMovement (45, 1000, false);
 
-    PneumaticLoad.set_value(false);
-    _LateralMovement (-48, -48, 2000, false);
+    //_LateralMovement (-12, -12, 750, true);
+    //_OuttakeL (750);
+
+    _LateralMovement (-48, -48, 1750, false);
+    _AngularMovement( 270, 1000, false);
+    _LateralMovement(-24, -48, 1000, false);
+    _OuttakeT (2000);
     PneumaticLoad.set_value(true);
-    _AngularMovement(270, 500, false);
-    BFlywheel.move_velocity(600);
-    _LateralMovement(-72, -48, 1000, true);
-    pros::delay(1500);
+    BFlywheel.move(127);
+    _LateralMovement (-72, -48, 1500, true);
+    pros::delay(1000);
     BFlywheel.brake();
-    _LateralMovement(-24, -48, 1500, false);
-    PneumaticLoad.set_value(false);
+    _LateralMovement (-24, -48, 1500, false);
     _OuttakeT(2000);
-    _LateralMovement(-48, -48, 1000, true);
-    _AngularMovement(45, 750, true);
-    BFlywheel.move_velocity(600);
-    _LateralMovement(-24, -24, 1500, true);
-    BFlywheel.brake();
 
 }
 
@@ -123,49 +136,74 @@ void _PathLemS () {
     chassis.setBrakeMode (pros::E_MOTOR_BRAKE_BRAKE);
     chassis.setPose (-48, 0, 0, false);
 
-    PneumaticLoad.extend();
-    _LateralMovement (-48, 48, 1500, true);
-    _AngularMovement (270, 750, false);
+     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+    chassis.setPose(-48, -16, 90, false);
+    _AngularMovement(180, 750, true);
+    _LateralMovement (-48, -24, 1000, true);
+    _AngularMovement(90, 750, false);
     BFlywheel.move_velocity(600);
-    _LateralMovement (-72, 48, 1000, true);
-    pros::delay(3000);
+    _LateralMovement (-24, -24, 1000, true);
+    BFlywheel.brake();
+    _AngularMovement (45, 1000, false);
+
+    _LateralMovement (-12, -12, 750, true);
+    _OuttakeL (750);
+
+    _LateralMovement (-48, -48, 1750, false);
+    _AngularMovement( 270, 1000, false);
+    _LateralMovement(-24, -48, 1000, false);
+    _OuttakeT (2000);
+    PneumaticLoad.set_value(true);
+    BFlywheel.move_velocity(600);
+    _LateralMovement (-72, -48, 1500, true);
+    pros::delay(1000);
+    BFlywheel.brake();
+    _LateralMovement (-24, -48, 1500, false);
+    _OuttakeT(2000);
+
+    _LateralMovement (-48, -48, 1500, true);
+    _LateralMovement (-48, 24, 1000, true);
+    _AngularMovement(90, 750, false);
+    BFlywheel.move(127);
+    _LateralMovement (-24, 24, 1000, true);
+    BFlywheel.brake();
+    _AngularMovement (135, 1000, true);
+
+    _AngularMovement (315, 1500, true);
+    _AngularMovement (-12, 12, false);
+    _OuttakeT (750);
+    _AngularMovement (45, 1500, true);
+
+    _LateralMovement (-48, 48, 1750, false);
+    _AngularMovement( 270, 1000, false);
+    _LateralMovement(-24, 48, 1000, false);
+    _OuttakeT (2000);
+    PneumaticLoad.set_value(true);
+    BFlywheel.move(127);
+    _LateralMovement (-72, 48, 1500, true);
+    pros::delay(1000);
     BFlywheel.brake();
     _LateralMovement (-24, 48, 1500, false);
-    PneumaticLoad.retract();
-    _OuttakeT(3000);
-    _LateralMovement (-48, -48, 1000, true);
-    _AngularMovement (0, 750, true);
-    PneumaticLoad.extend();
-    _LateralMovement (-48, -48, 3000, false);
-    _AngularMovement (270, 750, false);
-    BFlywheel.move_velocity(600);
-    _LateralMovement (-72, -48, 1000, true);
-    pros::delay(3000);
-    BFlywheel.brake();
-    _LateralMovement(-24, -48, 1500, false);
-    PneumaticLoad.retract();
-    _OuttakeT(3000);
-    _LateralMovement (-48, -48, 1000, true);
-    _AngularMovement(0, 750, true);
-    _LateralMovement (-48, -24, 1000, true);
-    _AngularMovement (270, 750, false);
-    _LateralMovement (-72, -24, 1000, true);
-    _AngularMovement (0, 750, true);
-    BFlywheel.move_velocity(600);
-    TFlywheel.move_velocity(600);
-    _LateralMovement(-72, 0, 3000, true);
-    pros::delay(2000);
-    BFlywheel.brake();
-    TFlywheel.brake();
+    _OuttakeT(2000);
+    _LateralMovement (-48, 48, 1000, true);
+
+    _AngularMovement (180, 1000, true);
+    _LateralMovement(-48, 24, 1500);
+    _AngularMovement (270, 1000, true);
+    _LateralMovement (-60, 24, 750, true);
+    _AngularMovement(180, 750, false);
+    _LateralMovement (-60, -12, 2000, true);
+
+
 
 }
 
 void _PathLemA () {
 
     chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-    chassis.setPose(-72, 6, 0, false);
+    chassis.setPose(0, 0, 0, false);
     
-    _LateralMovement (-72, 12, 1000, true);
+    _LateralMovement (0, 4, 1000, true);
 
 
 }

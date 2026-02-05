@@ -11,7 +11,6 @@
 #ifndef _PROS_AUTON_H_
 #define _PROS_AUTON_H_
 //Declare auton utility variables.
-extern bool intake;
 
 //Declare auton functions.
 //void _LateralMovement (float XCoord, float YCoord, int Time, bool Forward=true);
