@@ -23,7 +23,7 @@ void initialize() {
 	the robot thinks its at. Only turn on for testing */
 
 	pros::lcd::initialize();
-	pros::lcd::print(7, "ARM, AutonR, 2/4");
+	pros::lcd::print(7, "ARM, AutonL, 2/10");
 
 	//# Calibrate the chassis.
 	chassis.calibrate();
@@ -99,7 +99,7 @@ void competition_initialize() {}
 void autonomous() {
 
 	//# State the path.
-	_PathLemR();
+	_PathLemS();
 	
 }
 

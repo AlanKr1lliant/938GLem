@@ -156,9 +156,9 @@ lemlib::ExpoDriveCurve SteerCurve (3,
                                   1.019);
 
 //Defines PID.
-lemlib::ControllerSettings LController (6, // proportional gain (kP)
-                                        0, // integral gain (kI)
-                                        3, // derivative gain213 (kD)
+lemlib::ControllerSettings LController (4, // proportional gain (kP)
+                                        -1, // integral gain (kI)
+                                        20, // derivative gain (kD)
                                         3, // anti windup
                                     	1, // small error range, in inches
                                         100, // small error range timeout, in milliseconds
@@ -168,7 +168,7 @@ lemlib::ControllerSettings LController (6, // proportional gain (kP)
 );
 lemlib::ControllerSettings AController (8, // proportional gain (kP)
 										0, // integral gain (kI)
-										80, // derivative gain (kD)
+										100, // derivative gain (kD)
 										3, // anti windup
 										1, // small error range, in degrees
 										100, // small error range timeout, in milliseconds

@@ -37,23 +37,23 @@ void BlockMovement () {
     if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 
         TFlywheel.brake();
-        BFlywheel.move_velocity(600);
+        BFlywheel.move(127);
 
     }
 
     //High goal outake.
     else if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
 
-        TFlywheel.move_velocity(600);
-        BFlywheel.move_velocity(600);   
+        TFlywheel.move(127);
+        BFlywheel.move(127);   
 
     }
 
     //Low goal outake.
     else if (MasterCont.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
 
-        TFlywheel.move_velocity(-600);
-        BFlywheel.move_velocity(-600);
+        TFlywheel.move(-127);
+        BFlywheel.move(-127);
 
     } else {
         TFlywheel.brake();
@@ -69,13 +69,13 @@ void PneuMovement () {
 
         if (PneuDescore == false) {
             
-            PneumaticDescore.retract();
+            PneumaticDescore.set_value(false);
             PneuDescore = true;
             pros::delay(250);
 
         } else {
 
-            PneumaticDescore.extend();
+            PneumaticDescore.set_value(true);
             PneuDescore = false;
             pros::delay(250);
 
@@ -87,14 +87,14 @@ void PneuMovement () {
 
         if (PneuMatchLoad== false) {
 
-            PneumaticLoad.retract();
+            PneumaticLoad.set_value(false);
             PneuMatchLoad = true;
             pros::delay(250);
 
         } else {
 
             //PneuLoad.retract();
-            PneumaticLoad.extend();
+            PneumaticLoad.set_value(true);
             PneuMatchLoad = false;
             pros::delay(250);
 
