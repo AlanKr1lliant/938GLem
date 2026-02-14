@@ -22,14 +22,14 @@ void initialize() {
 	/*# This commented code in initialize tells us the code program and the lemlib pose
 	the robot thinks its at. Only turn on for testing */
 
-	pros::lcd::initialize();
-	pros::lcd::print(7, "ARM, AutonL, 2/10");
+	//pros::lcd::initialize();
+	//pros::lcd::print(7, "ARM, AutonS, 2/14");
 
 	//# Calibrate the chassis.
 	chassis.calibrate();
 
 	//pros::lcd::print(0, "Robot 938G initialized");
-	
+	/*
     pros::Task screenTask([&]() {
 
 		lemlib::TrackingWheel leftMotor(drivetrain.leftMotors, drivetrain.wheelDiameter,
@@ -63,7 +63,7 @@ void initialize() {
             pros::delay(100);
         }
     });
-	
+	*/
 }
 
 /**
